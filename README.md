@@ -25,7 +25,29 @@ Below is the validated design schematic modeled within NI Multisim to verify sta
 
 ![NI Multisim Circuit Schematic Diagram](https://github.com/user-attachments/assets/47d306d0-9c20-4bf0-b7e9-b3623b154b56)
 
----
+## Troubleshooting & Debugging
+
+During the physical breadboarding phase, the circuit did not function perfectly on the first initialization. A hardware validation process utilizing a digital logic probe was executed to isolate and resolve the following root causes:
+
+### 1. Signal Tracing & Node Correction (The Reset Mechanism)
+* **The Problem:** The global reset switch failed to zero out the counter displays or hold the sequential states reliably.
+* **The Diagnostic Process:** Used a digital logic probe to trace the voltage state transition when the switch was compressed. 
+* **The Root Cause:** Discovered the capacitor was tied to the incorrect side of the logic junction, filtering out the brief high-to-low transition pulse required by the clear pins.
+* **The Fix:** Re-routed the capacitor node relative to the junction according to the validated Multisim blueprint, establishing a clean, reliable clearing signal.
+
+### 2. Component Failure Isolation (Defective 7400-Series Logic Gates)
+* **The Problem:** The staging logic refused to step forward sequentially, staying stuck on a fixed standby state despite receiving an active clock pulse from the 555 timer.
+* **The Diagnostic Process:** Probed the input pins of the basic 7400-series logic gate ICs to confirm the signal was arriving, then checked the corresponding output pins. 
+* **The Root Cause:** The input signals were valid, but the output pins remained stagnant, isolating internal gate damage within one of the standard logic gate packages.
+* **The Fix:** Swapped out the defective basic 7400 IC with a fresh unit and re-validated the output states, restoring sequential operation.
+
+### 3. Point-to-Point Wiring Verification
+* **The Problem:** Weird timing behavior occurred due to cross-wiring lines on the dense breadboard layout.
+* **The Root Cause:** Minor point-to-point wiring mismatches between the basic logic gate outputs and the downstream counter inputs.
+* **The Fix:** Used a logic probe to trace the signal paths step-by-step against the IC datasheets, correcting the physical layout mismatches to ensure accurate sequential routing.
+
+
+
 
 ## Physical Hardware Prototyping & Testing
 The system was fully breadboarded using 7400-series discrete TTL logic integrated circuits. Testing was split into stagnant validation states to ensure proper power rail routing and logic transitions.
