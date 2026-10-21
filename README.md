@@ -12,7 +12,7 @@ Below is the validated design schematic modeled within NI Multisim to verify sta
 The system was fully breadboarded using 7400-series discrete TTL logic integrated circuits. Testing was split into stagnant validation states to ensure proper power rail routing and logic transitions.
 
 ### Hardware Stagnant Power State:
-![Physical Breadboard Assembly - System Powered Off](<img src="https://github.com/user-attachments/assets/04edfeef-bcc9-4c6d-8f6d-74df7aa9c03f" width="600" alt="Physical Breadboard Assembly - System Powered Off" />)
+![Physical Breadboard Assembly - System Powered Off](https://github.com/user-attachments/assets/04edfeef-bcc9-4c6d-8f6d-74df7aa9c03f)
 
 ### Active Sequential State Testing:
-![Physical Breadboard Assembly - System Powered On and Counting](<img src="https://github.com/user-attachments/assets/aae33fa9-410d-4b6a-8a48-5da96c8ee18e" width="600" alt="Physical Breadboard Assembly - System Powered On and Counting" />)
+![Physical Breadboard Assembly - System Powered On and Counting]![Physical Breadboard Assembly - System Powered On and Counting](https://github.com/user-attachments/assets/aae33fa9-410d-4b6a-8a48-5da96c8ee18e)
