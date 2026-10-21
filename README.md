@@ -4,7 +4,7 @@ A digital logic timing circuit simulated in NI Multisim and prototyped on a phys
 ## 📐 Schematic & Simulation Architecture
 Below is the validated design schematic modeled within NI Multisim to verify state propagation and clock signal intervals before hardware procurement.
 
-[NI Multisim Circuit Schematic Diagram](https://github.com/user-attachments/assets/47d306d0-9c20-4bf0-b7e9-b3623b154b56)
+![NI Multisim Circuit Schematic Diagram](https://github.com/user-attachments/assets/47d306d0-9c20-4bf0-b7e9-b3623b154b56)
 
 ---
 
@@ -15,4 +15,4 @@ The system was fully breadboarded using 7400-series discrete TTL logic integrate
 ![Physical Breadboard Assembly - System Powered Off](https://github.com/user-attachments/assets/04edfeef-bcc9-4c6d-8f6d-74df7aa9c03f)
 
 ### Active Sequential State Testing:
-![Physical Breadboard Assembly - System Powered On and Counting]![Physical Breadboard Assembly - System Powered On and Counting](https://github.com/user-attachments/assets/aae33fa9-410d-4b6a-8a48-5da96c8ee18e)
+![Physical Breadboard Assembly - System Powered On and Counting](https://github.com/user-attachments/assets/aae33fa9-410d-4b6a-8a48-5da96c8ee18e)
