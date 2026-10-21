@@ -4,7 +4,7 @@ A digital logic timing circuit simulated in NI Multisim and prototyped on a phys
 ## 📐 Schematic & Simulation Architecture
 Below is the validated design schematic modeled within NI Multisim to verify state propagation and clock signal intervals before hardware procurement.
 
-![NI Multisim Circuit Schematic Diagram](<img src="https://github.com/user-attachments/assets/47d306d0-9c20-4bf0-b7e9-b3623b154b56" width="600" alt="NI Multisim Circuit Schematic Diagram" />)
+![NI Multisim Circuit Schematic Diagram](https://github.com/user-attachments/assets/47d306d0-9c20-4bf0-b7e9-b3623b154b56)
 
 ---
 
