@@ -1,5 +1,5 @@
 # drag-race-timing-system
-A digital logic timing circuit simulated in NI Multisim and prototyped on a physical breadboard. This system is engineered to replicate a drag strip's sequential traffic light ("Christmas Tree") and timer electrical system.
+A digital logic timing circuit simulated in NI Multisim and prototyped on a physical breadboard. This system is designed to replicate a drag strip's sequential traffic light ("Christmas Tree") and timer electrical system.
 
 ## Detailed Circuit Operation & Logic Breakdown
 
@@ -9,15 +9,15 @@ To validate the timing system's functionality, the circuit architecture is divid
 * **Operation:** A **555 timer IC** is configured in **Astable mode** to serve as the master system clock. 
 * **Validation Metric:** The values of resistors R1, R2 and capacitor C1 were specifically calculated and tuned to output a precise 10Hz square wave (0.1-second pules). This ensures the run-time counter registers increments at exact tenth-of-a-second intervals.
 
-### 2. Sequential Control Logic (74LS76 Flip-Flops & Logic Gates)
-* **Operation:** The staging light sequence (the "Christmas Tree") is driven by a synchronous state machine utilizing **74LS76 JK Flip-Flops**. 
-* **The Sequence:** When the manual start switch (S2) is toggled, the clock pulses step the circuit through sequential states: Pre-Stage LED → Stage LED → Green Light (Go).
-* **Interlocking Protection:** An **AND-gate logic matrix (74LS08)** acts as a safety interlock. The binary counter subsystem is strictly held at zero until the state machine safely registers the final "Green Light" state, preventing premature timing triggers.
+### 2. Sequential Control Logic (74LS76 Flip-Flops , 74LS93 Counters, & Logic Gates)
+* **Operation:** The staging light sequence (the "Christmas Tree") is driven by a synchronous state machine utilizing **74LS76 JK Flip-Flops** into a **74LS93 Ripple Counter**. 
+* **The Sequence:** When the manual start switch (S2) is toggled, the clock pulses step the circuit through sequential states: Red LED (Ready) → Yellow (Set) LED → Green Light (Go).
+* **Gated Clock & State Transition:** A **74LS08 AND gates'** inputs are selected so that when the **74LS93 Ripple Counter** reaches count 6 the **AND Gate** sends a 1 to the clock input of the main **74LS76 Flip-Flop** causing its Q outputs to flip and simultaneously stopping the lighting sequence while turning on the green LED & starting the stopwatch timing system. 
 
-### 3. High-Speed Counter & Display Driver (7493 & 7447 ICs)
+### 3. High-Speed Counter & Display Driver (74LS93 Counters & 74LS47 Decoders)
 * **Operation:** Once the Green Light state is active, the 10Hz clock signal is routed directly into a chain of **7493 4-Bit Binary Counters**. 
-* **BCD Conversion:** The raw binary output from the counters is fed directly into **7447 BCD-to-7-Segment Decoder/Drivers**, which handle the active-low current required to display digits on the dual-digit display panel.
-* **Global Reset:** Toggling the master reset switch (S3) sends an immediate clear pulse to the 7493 counter pins and forces the JK flip-flops back to their initial standby state, cleanly wiping the system memory for the next race.
+* **BCD Conversion:** The raw binary output from the counters is fed directly into **7447 BCD-to-7-Segment Decoder/Drivers**, which handle the active-low current required to display digits on the dual-digit display.
+* **Global Reset:** Toggling the master reset switch (S3) sends an immediate clear pulse to the 7493 counter pins and forces the JK flip-flops back to their initial standby state, cleanly wiping the system memory for the next race. This same system also allows for a **Power-On Reset** Signal.
 
 
 ## Schematic & Simulation Architecture
@@ -27,7 +27,7 @@ Below is the validated design schematic modeled within NI Multisim to verify sta
 
 ## Troubleshooting & Debugging
 
-During the physical breadboarding phase, the circuit did not function perfectly on the first initialization. A hardware validation process utilizing a digital logic probe was executed to isolate and resolve the following root causes:
+During the physical breadboarding phase, the circuit did not function perfectly on the first try. A hardware validation process utilizing a digital logic probe was executed to isolate and resolve the following root causes:
 
 ### 1. Signal Tracing & Node Correction (The Reset Mechanism)
 * **The Problem:** The global reset switch failed to zero out the counter displays or hold the sequential states reliably.
@@ -50,13 +50,16 @@ During the physical breadboarding phase, the circuit did not function perfectly 
 
 
 ## Physical Hardware Prototyping & Testing
-The system was fully breadboarded using 7400-series discrete TTL logic integrated circuits. Testing was split into stagnant validation states to ensure proper power rail routing and logic transitions.
+The validated schematic was brought to life on a physical breadboard using 7400-series TTL ICs, a 555 timer, indicator LEDs, and 7-segment display modules. Testing started with an unpowered powered state to moving to a initial power on state, and concluded with a real-time race sequence run.
 
 ### Power State OFF:
 ![Physical Breadboard Assembly - Power State OFF](https://github.com/user-attachments/assets/e5322f28-d125-4758-b357-15b526c6281d)
+> *Initial layout verification ensuring clean wire routing, correct IC pin orientation, and proper decoupling capacitor placement across power rails before applying VCC.*
 
 ### Power State ON:
 ![Physical Breadboard Assembly - Power State ON](https://github.com/user-attachments/assets/6c0e4017-5910-4521-b373-0f441bbd1ca9)
+> *Applying 5V power to verify standby bias levels. The initial state correctly holds the Red "Ready" LED lit while keeping the 7493 counters reset and the 7-segment displays at zero.*
 
 ### Full Demonstration:
 ![Physical Breadboard Assembly - Full Demonstration](https://github.com/user-attachments/assets/c1da6070-af01-4f1d-964e-38e4d15b3793)
+> *Full hardware demonstration showing the start switch trigger, automatic progression through the LEDs, state transition gating via the 74LS08 AND gate, live 10Hz timing on the 7-segment displays & the master reset.*
