@@ -63,3 +63,4 @@ The validated schematic was brought to life on a physical breadboard using 7400-
 ### Full Demonstration:
 ![Physical Breadboard Assembly - Full Demonstration](https://github.com/user-attachments/assets/c1da6070-af01-4f1d-964e-38e4d15b3793)
 > *Full hardware demonstration showing the start switch trigger, automatic progression through the LEDs, state transition gating via the 74LS08 AND gate, live 10Hz timing on the 7-segment displays & the master reset.*
+> -*(Sped Up Slightly)*-
